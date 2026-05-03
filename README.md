@@ -3,7 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
-Fuzzy matching optimized for Spanish names. It uses modified character and token-level Levenshtein Distances to compute a similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of "de".
+## Overview
+
+delFuzz is a tool for fuzzy matching Spanish names. It uses modified character and token-level Levenshtein Distance algorithms to compute a normalized similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of Spanish prepositions and articles. 
 
 ## Requirements
 
@@ -47,13 +49,13 @@ import delfuzz
 | char_cost_dict | dict | [CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | Dictionary of custom character-level costs. |
 | token_cost_dict | dict | [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | Dictionary of custom token-level costs. |
 | placeholders | list[tuple[str, str]] | [MULTIGRAPH_PLACEHOLDERS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | List of multigraph-to-placeholder mappings used to treat common Spanish multigraphs as their own singular characters. |
-| sim_threshold | float | 70.0 | Minimum similarity (0-100) required to soft match a token/token span to a key in token_cost_dict. Allows algorithm to tolerate minor spelling variations and errors. |
-| max_char_span_len | int | 2 | Maximum length of character spans to consider. Allows algorithm to support operations on sequences of characters (e.g. multigraphs). |
-| max_token_span_len | int | 3 | Maximum length of token spans to consider. Allows algorithm to support operations on sequences of tokens. |
+| sim_threshold | float | 70.0 | Minimum similarity (0-100) required to soft match a token/token span to a key in token_cost_dict. Allows the algorithm to tolerate minor spelling variations and errors. |
+| max_char_span_len | int | 2 | Maximum length of character spans to consider. Allows the algorithm to support edit operations on spans of characters (e.g. multigraphs). |
+| max_token_span_len | int | 3 | Maximum length of token spans to consider. Allows the algorithm to support edit operations on spans of tokens. |
 
 ### Custom Cost Dictionaries
 
-`score` accepts custom cost dictionaries, allowing you to modify or replace the defaults ([CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) and/or [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py)).
+`score` accepts custom cost dictionaries, allowing you to modify or replace the defaults ([CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) or [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py)).
 
 Cost dictionaries have the following structure:
 
@@ -89,7 +91,7 @@ A few notes if you create your own custom cost dictionary:
 
 1. Make sure the dictionary has the keys `"sub"`, `"ins"`, and `"del"` representing each type of edit operation (substitution, insertion, and deletion).
 
-2. Make sure that each character or token is listed as a single element in a tuple. This means that even singular characters or tokens such as `"i"` and `"juan"` are stored as `("i",)` and `("juan",)`. Sequences of characters or tokens such as `"ph"` and `"maría isabel"` are stored as `("p", "h")` and `("maría", "isabel")`. This structure enables the lookup process that supports operations on sequences of characters and tokens.
+2. Make sure that each character or token is listed as a single element in a tuple. This means that even singular characters or tokens such as `"i"` and `"juan"` are stored as `("i",)` and `("juan",)`. Spans of characters or tokens such as `"ph"` and `"maría isabel"` are stored as `("p", "h")` and `("maría", "isabel")`. This structure enables the lookup process that supports edit operations on spans.
 
 3. Make sure that tokens are all lowercase (e.g. `("mabel",)` and not `("Mabel",)`).
 
@@ -104,13 +106,13 @@ ex_token_costs = delfuzz.add_inverse_subs(ex_token_costs)
 delfuzz.score("Juan", "John", char_cost_dict = ex_char_costs, token_cost_dict = ex_token_costs)
 ```
 
-5. If you add costs for operations on sequences longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest sequence in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer sequences will not be found during lookup otherwise.
+5. If you add costs for edit operations on spans longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest span in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer spans will not be found during lookup otherwise.
 
 ## Comparison
 
 General-purpose fuzzy or string matching libraries like RapidFuzz treat names as plain strings. Without context of Spanish spelling or name usage conventions, they tend to underestimate the similarity between Spanish names.
 
-For example, here's how our scores compare to RapidFuzz's ratio scores:
+For example, here's how delFuzz's scores compare to RapidFuzz's ratio scores:
 
 | Name 1 | Name 2 | delFuzz | RapidFuzz Ratio |
 | --- | --- | --- | --- |
