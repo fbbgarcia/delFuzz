@@ -1,5 +1,8 @@
 # delFuzz
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+
 Fuzzy matching optimized for Spanish names. It uses modified character and token-level Levenshtein Distances to compute a similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of "de".
 
 ## Requirements
@@ -88,7 +91,9 @@ A few notes if you create your own custom cost dictionary:
 
 2. Make sure that each character or token is listed as a single element in a tuple. This means that even singular characters or tokens such as `"i"` and `"juan"` are stored as `("i",)` and `("juan",)`. Sequences of characters or tokens such as `"ph"` and `"maría isabel"` are stored as `("p", "h")` and `("maría", "isabel")`. This structure enables the lookup process that supports operations on sequences of characters and tokens.
 
-3. Substitution costs only need to be defined in one direction. You can use `add_inverse_subs` to automatically add the reverse mappings:
+3. Make sure that tokens are all lowercase (e.g. `("mabel",)` and not `("Mabel",)`).
+
+4. Substitution costs only need to be defined in one direction. You can use `add_inverse_subs` to automatically add the reverse mappings:
 
 ```python
 import delfuzz
@@ -99,9 +104,9 @@ ex_token_costs = delfuzz.add_inverse_subs(ex_token_costs)
 delfuzz.score("Juan", "John", char_cost_dict = ex_char_costs, token_cost_dict = ex_token_costs)
 ```
 
-4. If you add costs for operations on sequences longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest sequence in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer sequences will not be found during lookup otherwise.
+5. If you add costs for operations on sequences longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest sequence in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer sequences will not be found during lookup otherwise.
 
-## Benchmark
+## Comparison
 
 General-purpose fuzzy or string matching libraries like RapidFuzz treat names as plain strings. Without context of Spanish spelling or name usage conventions, they tend to underestimate the similarity between Spanish names.
 
