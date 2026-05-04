@@ -55,58 +55,65 @@ import delfuzz
 
 ### Custom Cost Dictionaries
 
-`score` accepts custom cost dictionaries, allowing you to modify or replace the defaults ([CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) or [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py)).
+`score` accepts custom cost dictionaries, allowing you to modify or replace the defaults ([CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) and/or [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py)).
 
-Cost dictionaries have the following structure:
-
-```python
-ex_char_costs = {
-    "sub": {
-        ("i",): [(("í",), 0.10), (("y",), 0.50)],
-        ("p", "h"): [(("f",), 0.50)],
-    },
-    "ins": {
-        ("h",): 0.50
-    },
-    "del": {
-        ("h",): 0.50
-    },
-}
-
-ex_token_costs = {
-    "sub": {
-        ("juan",): [(("john",), 0.15)],
-        ("mabel",): [(("maría", "isabel"), 0.15), (("mary", "isabelle"), 0.15)]
-    },
-    "ins": {
-        ("de",):  0.20,
-    },
-    "del": {
-        ("de",):  0.20,
-    },
-}
-```
-
-A few notes if you create your own custom cost dictionary:
-
-1. Make sure the dictionary has the keys `"sub"`, `"ins"`, and `"del"` representing each type of edit operation (substitution, insertion, and deletion).
-
-2. Make sure that each character or token is listed as a single element in a tuple. This means that even singular characters or tokens such as `"i"` and `"juan"` are stored as `("i",)` and `("juan",)`. Spans of characters or tokens such as `"ph"` and `"maría isabel"` are stored as `("p", "h")` and `("maría", "isabel")`. This structure enables the lookup process that supports edit operations on spans.
-
-3. Make sure that tokens are all lowercase (e.g. `("mabel",)` and not `("Mabel",)`).
-
-4. Substitution costs only need to be defined in one direction. You can use `add_inverse_subs` to automatically add the reverse mappings:
+The easiest way to manage cost dictionaries is with the built-in `CharCostDictionary` and `TokenCostDictionary` classes:
 
 ```python
 import delfuzz
 
-ex_char_costs = delfuzz.add_inverse_subs(ex_char_costs)
-ex_token_costs = delfuzz.add_inverse_subs(ex_token_costs)
+# start from defaults
+char_costs = delfuzz.CharCostDictionary()
+token_costs = delfuzz.TokenCostDictionary()
 
-delfuzz.score("Juan", "John", char_cost_dict = ex_char_costs, token_cost_dict = ex_token_costs)
+# or start empty
+char_costs = delfuzz.CharCostDictionary(empty=True)
+token_costs = delfuzz.TokenCostDictionary(empty=True)
 ```
 
-5. If you add costs for edit operations on spans longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest span in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer spans will not be found during lookup otherwise.
+Both classes provide the same methods for adding, editing, removing, and displaying costs:
+
+```python
+# add a new substitution cost
+token_costs.add_sub_cost("Jose", "Joseph", 0.15)
+
+# edit an existing substitution cost
+token_costs.edit_sub_cost("José", "Joseph", 0.10)
+
+# remove a substitution cost
+token_costs.remove_sub_cost("José", "Joseph")
+
+# adding, editing, and removing insertion and deletion costs work the same way
+token_costs.add_ins_cost("de la", 0.20)
+token_costs.edit_ins_cost("la", 0.15)
+token_costs.remove_ins_cost("la")
+
+# display costs as a table
+token_costs.show_sub_costs()
+token_costs.show_ins_costs()
+token_costs.show_del_costs()
+
+# display substitution costs filtered to only costs involving 
+# a given char/char span or token/token span
+token_costs.show_sub_costs("s")
+
+```
+
+Pass your custom dictionary to `score`:
+
+```python
+delfuzz.score("Felipe de la Cruz", "Philip de la Cruz", token_cost_dict=token_costs)
+```
+
+#### Notes
+
+1. All inputs are automatically lowercased.
+
+2. Multi-character and multi-token spans are supported and treated as single units during similarity calculations. For example, `"ph"` in a `CharCostDictionary` or `"Juan Pablo"` in a `TokenCostDictionary`.
+
+3. Substitution costs are bidirectional by default. Pass `bidirectional=False` to add a one-way mapping.
+
+4. If you add costs for edit operations on spans longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest span in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer spans will not be found during lookup otherwise.
 
 ## Comparison
 
@@ -128,7 +135,7 @@ RapidFuzz scores computed using `rapidfuzz.fuzz.ratio`.
 
 This algorithm was developed as part of a Data Science capstone project at California Polytechnic State University, San Luis Obispo, in contribution to the [African Californios](https://www.africancalifornios.org/) research project.
 
-The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones, Lecturer in History, and Dr. Foaad Khosmood, Professor of Computer Science. Additional collaboration was provided by Jack T. Martin, a Visiting Scholar in History. It was advised by Dr. Alex Dekhtyar, Professor of Computer Science, and Dr. Kelly N. Bodwin, Professor of Statistics.
+The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones, Lecturer in History, and Dr. Foaad Khosmood, Professor of Computer Science. Additional collaboration was provided by Jack T. Martin, a Visiting Scholar in History. It was advised by Dr. Alex Dekhtyar, Professor of Computer Science, and Dr. Kelly N. Bodwin, Associate Professor of Statistics.
 
 
 ## License

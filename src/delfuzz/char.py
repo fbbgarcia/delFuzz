@@ -1,5 +1,6 @@
 import math
 from .defaults import CHAR_COSTS, MULTIGRAPH_PLACEHOLDERS
+from .cost_dict import _to_dict
 
 
 def _get_char_sub_cost(
@@ -72,6 +73,7 @@ def _char_distance(
         the modified Levenshtein distance between the two tokens, and units1 and units2 
         are the number of character units consumed from each token along the optimal path.
     """
+    cost_dict = _to_dict(cost_dict)
 
     for digraph, placeholder in placeholders:
         token1 = token1.replace(digraph, placeholder)

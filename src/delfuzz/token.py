@@ -2,7 +2,7 @@ import math
 import warnings
 from .defaults import CHAR_COSTS, TOKEN_COSTS, MULTIGRAPH_PLACEHOLDERS
 from .char import _char_ratio
-
+from .cost_dict import _to_dict
 
 def _get_avg_sim(
     token1: tuple,
@@ -213,6 +213,9 @@ def _token_distance(
         the modified Levenshtein distance between the two names, and units1 and units2
         are the number of token units consumed from each name along the optimal path.
     """
+    char_cost_dict = _to_dict(char_cost_dict)
+    token_cost_dict = _to_dict(token_cost_dict)
+
     tokens1 = tuple(name1.lower().split())
     tokens2 = tuple(name2.lower().split())
 
