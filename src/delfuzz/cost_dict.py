@@ -235,18 +235,19 @@ class CostDictionary:
         Returns:
             pd.DataFrame: DataFrame of substitution costs.
         """
+        col = "char" if self._level == "char" else "token"
         rows = []
         for key, values in self._costs["sub"].items():
             for target, cost in values:
                 rows.append({
-                    "unit1": " ".join(key),
-                    "unit2": " ".join(target),
+                    f"{col} 1": " ".join(key),
+                    f"{col} 2": " ".join(target),
                     "cost": cost,
                 })
-        df = pd.DataFrame(rows, columns=["unit1", "unit2", "cost"])
+        df = pd.DataFrame(rows, columns=[f"{col} 1", f"{col} 2", "cost"])
         if unit is not None:
             u = " ".join(_to_tuple(unit, self._level))
-            df = df[(df["unit1"] == u) | (df["unit2"] == u)]
+            df = df[(df[f"{col} 1"] == u) | (df[f"{col} 2"] == u)]
         print(df.to_string(index=False))
         return df
 
@@ -257,8 +258,9 @@ class CostDictionary:
         Returns:
             pd.DataFrame: DataFrame of insertion costs.
         """
-        rows = [{"unit": " ".join(key), "cost": cost} for key, cost in self._costs["ins"].items()]
-        df = pd.DataFrame(rows, columns=["unit", "cost"])
+        col = "char" if self._level == "char" else "token"
+        rows = [{col: " ".join(key), "cost": cost} for key, cost in self._costs["ins"].items()]
+        df = pd.DataFrame(rows, columns=[col, "cost"])
         print(df.to_string(index=False))
         return df
 
@@ -269,8 +271,9 @@ class CostDictionary:
         Returns:
             pd.DataFrame: DataFrame of deletion costs.
         """
-        rows = [{"unit": " ".join(key), "cost": cost} for key, cost in self._costs["del"].items()]
-        df = pd.DataFrame(rows, columns=["unit", "cost"])
+        col = "char" if self._level == "char" else "token"
+        rows = [{col: " ".join(key), "cost": cost} for key, cost in self._costs["del"].items()]
+        df = pd.DataFrame(rows, columns=[col, "cost"])
         print(df.to_string(index=False))
         return df
 
