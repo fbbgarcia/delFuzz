@@ -6,9 +6,6 @@ __all__ = [
     # Scoring function
     "score",
 
-    # Utilities
-    "add_inverse_subs",
-
     # Defaults
     "CHAR_COSTS",
     "TOKEN_COSTS",

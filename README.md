@@ -55,9 +55,9 @@ import delfuzz
 
 ### Custom Cost Dictionaries
 
-`score` accepts custom cost dictionaries, allowing you to modify or replace the defaults ([CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) and/or [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py)).
+`score` accepts custom cost dictionaries, allowing you to modify or replace the defaults. A full list of default costs can be found in [costs.md](https://github.com/fbbgarcia/delfuzz/blob/main/costs.md).
 
-The easiest way to manage cost dictionaries is with the built-in `CharCostDictionary` and `TokenCostDictionary` classes:
+The easiest way to manage cost dictionaries is with the built-in `CharCostDictionary` class for character-level costs and the built-in `TokenCostDictionary` class for token-level costs:
 
 ```python
 import delfuzz
@@ -95,8 +95,7 @@ token_costs.show_del_costs()
 
 # display substitution costs filtered to only costs involving 
 # a given char/char span or token/token span
-token_costs.show_sub_costs("s")
-
+token_costs.show_sub_costs("Juan")
 ```
 
 Pass your custom dictionary to `score`:
@@ -109,7 +108,7 @@ delfuzz.score("Felipe de la Cruz", "Philip de la Cruz", token_cost_dict=token_co
 
 1. All inputs are automatically lowercased.
 
-2. Multi-character and multi-token spans are supported and treated as single units during similarity calculations. For example, `"ph"` in a `CharCostDictionary` or `"Juan Pablo"` in a `TokenCostDictionary`.
+2. Multi-character and multi-token spans are supported. For example, `"ph"` in a `CharCostDictionary` or `"Juan Pablo"` in a `TokenCostDictionary`.
 
 3. Substitution costs are bidirectional by default. Pass `bidirectional=False` to add a one-way mapping.
 

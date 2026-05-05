@@ -1,3 +1,12 @@
+
+# Default multigraphs and their placeholder characters to be treated as single units in character-level comparisons.
+MULTIGRAPH_PLACEHOLDERS: list[tuple[str, str]] = [
+    ("rr", "ρ"),
+    ("ll", "λ"),
+    ("cc", "γ"),
+    ("ch", "χ"),
+]
+
 # Custom costs for character-level operations relfecting Spanish spelling conventions.
 # First key is the operation type: "sub" for substitution, "ins" for insertion, and "del" for deletion.
 # Second key is a tuple of characters representing the unit being operated on.
@@ -305,16 +314,8 @@ _TOKEN_COSTS_ONE_WAY = {
     },
 }
 
-# Default multigraphs and their placeholder characters to be treated as single units in character-level comparisons.
-MULTIGRAPH_PLACEHOLDERS: list[tuple[str, str]] = [
-    ("rr", "ρ"),
-    ("ll", "λ"),
-    ("cc", "γ"),
-    ("ch", "χ"),
-]
 
-
-def add_inverse_subs(costs: dict):
+def _add_inverse_subs(costs: dict):
     """
     Returns a copy of a one-way cost dictionary with inverted substitution pairs added.
     """
@@ -329,5 +330,5 @@ def add_inverse_subs(costs: dict):
 
 
 # Expanded cost dictionaries with inverse substitutions included.
-CHAR_COSTS: dict = add_inverse_subs(_CHAR_COSTS_ONE_WAY)
-TOKEN_COSTS: dict = add_inverse_subs(_TOKEN_COSTS_ONE_WAY)
+CHAR_COSTS: dict = _add_inverse_subs(_CHAR_COSTS_ONE_WAY)
+TOKEN_COSTS: dict = _add_inverse_subs(_TOKEN_COSTS_ONE_WAY)
