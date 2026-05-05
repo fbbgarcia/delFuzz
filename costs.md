@@ -1,5 +1,3 @@
-
-
 # Default Costs
 
 A reference for the default character and token-level edit costs used by delFuzz. All substitution costs are bidirectional — only one direction is listed here for brevity.
@@ -8,7 +6,7 @@ A reference for the default character and token-level edit costs used by delFuzz
 
 ### Substitution Costs
 
-| Unit 1 | Unit 2 | Cost |
+| Char(s) 1 | Char(s) 2 | Cost |
 | --- | --- | --- |
 | a | á | 0.10 |
 | a | ä | 0.25 |
@@ -32,13 +30,13 @@ A reference for the default character and token-level edit costs used by delFuzz
 
 ### Insertion Costs
 
-| Unit | Cost |
+| Char(s) | Cost |
 | --- | --- |
 | h | 0.50 |
 
 ### Deletion Costs
 
-| Unit | Cost |
+| Char(s) | Cost |
 | --- | --- |
 | h | 0.50 |
 
@@ -46,343 +44,343 @@ A reference for the default character and token-level edit costs used by delFuzz
 
 ### Substitution Costs
 
-| Unit 1 | Unit 2 | Cost |
+| Token(s) 1 | Token(s) 2 | Cost |
 | --- | --- | --- |
-| beto | alberto | 0.15 |
-| beto | roberto | 0.15 |
-| beto | albert | 0.25 |
-| beto | robert | 0.25 |
-| alberto | albert | 0.15 |
-| roberto | robert | 0.15 |
-| pancho | francisco | 0.15 |
-| pancho | francis | 0.25 |
-| paco | francisco | 0.15 |
-| paco | francis | 0.25 |
-| francisco | francis | 0.15 |
-| chofo | rodolfo | 0.15 |
-| chofo | rudolph | 0.25 |
-| rodolfo | rudolph | 0.15 |
-| chepe | josé | 0.15 |
-| chepe | joseph | 0.25 |
-| pepe | josé | 0.15 |
-| pepe | joseph | 0.25 |
-| josé | joseph | 0.15 |
-| meme | manuel | 0.15 |
-| manuel | manola | 0.15 |
-| manuel | manolo | 0.15 |
-| alejo | alejandro | 0.15 |
-| alejo | alexander | 0.25 |
-| fonsi | alfonso | 0.15 |
-| fonsi | alphonse | 0.25 |
-| poncho | alfonso | 0.15 |
-| poncho | alphonse | 0.25 |
-| jano | alejandro | 0.15 |
-| jano | alexander | 0.25 |
-| alejandro | alexander | 0.15 |
-| chejo | sergio | 0.15 |
-| chus | jesús | 0.15 |
-| chuy | jesús | 0.15 |
-| adi | adolfo | 0.15 |
-| adi | adolph | 0.25 |
-| adolfo | adolph | 0.15 |
-| güicho | luis | 0.15 |
-| güicho | louis | 0.25 |
-| lucho | luis | 0.15 |
-| lucho | louis | 0.25 |
-| luis | louis | 0.15 |
-| luis | louise | 0.15 |
-| chente | vicente | 0.15 |
-| chente | vincent | 0.25 |
-| vicente | vincent | 0.15 |
-| kiko | federico | 0.15 |
-| kiko | frederick | 0.25 |
-| federico | frederick | 0.15 |
-| lalo | eduardo | 0.15 |
-| lalo | edward | 0.25 |
-| eduardo | edward | 0.15 |
-| lencho | lorenzo | 0.15 |
-| lencho | lawrence | 0.25 |
-| lorenzo | lawrence | 0.15 |
-| memo | guillermo | 0.15 |
-| memo | william | 0.25 |
-| guillermo | william | 0.15 |
-| mingo | domingo | 0.15 |
-| mingo | dominic | 0.25 |
-| domingo | dominic | 0.15 |
-| neto | ernesto | 0.15 |
-| neto | earnest | 0.25 |
-| ernesto | earnest | 0.15 |
-| nando | fernando | 0.15 |
-| nando | ferdinand | 0.25 |
-| fernando | ferdinand | 0.15 |
-| monchi | ramón | 0.15 |
-| monchi | raymond | 0.25 |
-| ramón | raymond | 0.15 |
-| rulo | raúl | 0.15 |
-| nacho | ignacio | 0.15 |
-| nacho | ignatius | 0.25 |
-| nancho | ignacio | 0.15 |
-| nancho | ignatius | 0.25 |
-| ignacio | ignatius | 0.15 |
-| toño | antonio | 0.15 |
-| toño | anthony | 0.25 |
-| antonio | anthony | 0.15 |
-| quique | enrique | 0.15 |
-| quique | henry | 0.25 |
-| enrique | henry | 0.15 |
-| goyo | gregorio | 0.15 |
-| goyo | gregory | 0.25 |
-| gregorio | gregory | 0.15 |
-| miguel | michael | 0.15 |
-| juan | john | 0.15 |
-| pablo | paul | 0.15 |
-| adán | adam | 0.15 |
-| agustín | augustine | 0.15 |
-| alfonso | alfonse | 0.15 |
-| alfonso | alonso | 0.15 |
-| alfonse | alonso | 0.15 |
-| alfredo | alfred | 0.15 |
-| ambrosio | ambrose | 0.15 |
-| andrés | andrew | 0.15 |
-| armando | herman | 0.15 |
-| arturo | arthur | 0.15 |
-| bartolomé | bartholomew | 0.15 |
-| bautista | baptiste | 0.15 |
-| benito | benedict | 0.15 |
-| bernardino | bernardo | 0.15 |
-| bruno | brown | 0.15 |
-| buenaventura | bonaventura | 0.15 |
-| carlos | charles | 0.15 |
-| cornelio | cornelius | 0.15 |
-| cristián | christian | 0.15 |
-| cristóbal | christopher | 0.15 |
-| darío | darius | 0.15 |
-| desi | desiderio | 0.15 |
-| diego | santiago | 0.15 |
-| edgardo | edgar | 0.15 |
-| edmundo | edmund | 0.15 |
-| emilio | emile | 0.15 |
-| esteban | stephen | 0.15 |
-| eusebio | eusebius | 0.15 |
-| fabio | fabius | 0.15 |
-| fabricio | fabrice | 0.15 |
-| felipe | philip | 0.15 |
-| félix | felix | 0.15 |
-| fermin | firmin | 0.15 |
-| geraldo | gerald | 0.15 |
-| gerardo | gerard | 0.15 |
-| gustavo | gustav | 0.15 |
-| herberto | herbert | 0.15 |
-| hernán | hernando | 0.15 |
-| hugo | hugh | 0.15 |
-| jacobo | jacob | 0.15 |
-| jaime | james | 0.15 |
-| javier | xavier | 0.15 |
-| jerónimo | jerome | 0.15 |
-| joaquín | joachim | 0.15 |
-| joaquín | joachin | 0.15 |
-| jorge | george | 0.15 |
-| josue | joshua | 0.15 |
-| julio | julius | 0.15 |
-| leonardo | leonard | 0.15 |
-| leopoldo | leopold | 0.15 |
-| luciano | lucian | 0.15 |
-| marcelo | marcellus | 0.15 |
-| marcio | marcus | 0.15 |
-| marco | mark | 0.15 |
-| mateo | matthew | 0.15 |
-| matías | matthias | 0.15 |
-| maximiliano | maximilian | 0.15 |
-| máximo | maximus | 0.15 |
-| agusto | agustus | 0.15 |
-| heracio | hoartio | 0.15 |
-| heracio | horatius | 0.15 |
-| cruz | cross | 0.15 |
-| cruz | cruzita | 0.15 |
-| chema | josé maría | 0.15 |
-| chema | joseph mary | 0.15 |
-| juampa | juan pablo | 0.15 |
-| juampa | john paul | 0.15 |
-| juandi | juan diego | 0.15 |
-| juandi | john diego | 0.15 |
-| juanjo | juan josé | 0.15 |
-| juanjo | john joseph | 0.15 |
-| juanfran | juan francisco | 0.15 |
-| juanfran | john francis | 0.15 |
-| juancho | juan francisco | 0.15 |
-| juancho | john francis | 0.15 |
-| juanfer | juan fernando | 0.15 |
-| juanfer | john ferdinand | 0.15 |
-| luismi | luis miguel | 0.15 |
-| luismi | louis michael | 0.15 |
-| licha | alicia | 0.15 |
-| licha | alice | 0.25 |
-| alicia | alice | 0.15 |
-| calu | claudia | 0.15 |
-| chayo | rosario | 0.15 |
-| chayo | rosary | 0.25 |
-| rosario | rosary | 0.15 |
-| concha | concepción | 0.15 |
-| concha | conception | 0.25 |
-| concha | conchita | 0.15 |
-| conchita | chita | 0.15 |
-| concepción | conception | 0.15 |
-| lena | magdalena | 0.15 |
-| lena | magdalene | 0.25 |
-| magdalena | magdalene | 0.15 |
-| leti | leticia | 0.15 |
-| leti | letitia | 0.25 |
-| leticia | letitia | 0.15 |
-| luchi | lucía | 0.15 |
-| luchi | lucy | 0.25 |
-| lucía | lucy | 0.15 |
-| mar | mariana | 0.15 |
-| mar | marianna | 0.15 |
-| mar | maryanne | 0.25 |
-| mariana | marianna | 0.15 |
-| mariana | maryanne | 0.15 |
-| tita | marta | 0.15 |
-| tita | martha | 0.25 |
-| marta | martha | 0.15 |
-| meches | mercedes | 0.15 |
-| pili | pilar | 0.15 |
-| paquita | francisca | 0.15 |
-| paquita | frances | 0.25 |
-| francisca | frances | 0.15 |
-| pepita | josefa | 0.15 |
-| pepita | josephine | 0.25 |
-| josefa | josephine | 0.15 |
-| tina | cristina | 0.15 |
-| tina | christine | 0.25 |
-| tina | christina | 0.25 |
-| cristina | christine | 0.15 |
-| cristina | christina | 0.15 |
-| vicky | victoria | 0.15 |
-| vivi | viviana | 0.15 |
-| vivi | vivianne | 0.25 |
-| viviana | vivianne | 0.15 |
-| geli | angélica | 0.15 |
-| gela | angélica | 0.15 |
-| lola | dolores | 0.15 |
-| fani | estefanía | 0.15 |
-| fani | stephanie | 0.25 |
-| estefanía | stephanie | 0.15 |
-| lupe | guadalupe | 0.15 |
-| chavela | isabela | 0.15 |
-| chavela | isabelle | 0.25 |
-| isabela | isabelle | 0.15 |
-| isabela | isabel | 0.15 |
-| isabelle | isabel | 0.15 |
-| chío | rocío | 0.15 |
-| sandy | sandra | 0.15 |
-| clementina | cleme | 0.15 |
-| maría | mary | 0.15 |
-| adelita | adele | 0.15 |
-| alejandra | alexandra | 0.15 |
-| ana | anna | 0.15 |
-| anabella | annabel | 0.15 |
-| antonietta | antonia | 0.15 |
-| anunciación | annunziata | 0.15 |
-| ascención | ascension | 0.15 |
-| asunción | asumption | 0.15 |
-| beatriz | beatrix | 0.15 |
-| blanca | blanche | 0.15 |
-| camila | camilla | 0.15 |
-| caridad | charity | 0.15 |
-| carla | carlota | 0.15 |
-| carmela | carmel | 0.15 |
-| carmelita | carmel | 0.15 |
-| carmen | carmel | 0.15 |
-| carmina | carmel | 0.15 |
-| catalina | katherine | 0.15 |
-| catherina | catherine | 0.15 |
-| clarisa | clarissa | 0.15 |
-| constanza | constance | 0.15 |
-| consuelo | consolation | 0.15 |
-| débora | deborah | 0.15 |
-| delfina | delphina | 0.15 |
-| dominga | dominique | 0.15 |
-| elena | helen | 0.15 |
-| elena | ileana | 0.15 |
-| eloisa | eloise | 0.15 |
-| ema | emma | 0.15 |
-| emilia | emily | 0.15 |
-| emilia | amelia | 0.15 |
-| emperatriz | empress | 0.15 |
-| ernesta | ernest | 0.15 |
-| esmeralda | emerald | 0.15 |
-| esperanza | hope | 0.15 |
-| estela | estelle | 0.15 |
-| estela | star | 0.15 |
-| eugenia | eugenie | 0.15 |
-| evangelina | evangeline | 0.15 |
-| evita | eva | 0.15 |
-| faustina | faustus | 0.15 |
-| feliciana | feliciano | 0.15 |
-| filomena | philomena | 0.15 |
-| florentina | florence | 0.15 |
-| florinda | flora | 0.15 |
-| gabriela | gabrielle | 0.15 |
-| gabriela | gabriella | 0.15 |
-| genoveva | genevieve | 0.15 |
-| gracia | grace | 0.15 |
-| hortensia | hortense | 0.15 |
-| inés | agnes | 0.15 |
-| inmaculada | immaculate | 0.15 |
-| isidora | isidore | 0.15 |
-| ivette | yvette | 0.15 |
-| jacinta | hyacinth | 0.15 |
-| leonor | eleanor | 0.15 |
-| lidia | lydia | 0.15 |
-| liliana | lillian | 0.15 |
-| lorena | lorraine | 0.15 |
-| lorenza | lauren | 0.15 |
-| lucila | lucille | 0.15 |
-| margarita | margaret | 0.15 |
-| marita | maría | 0.15 |
-| matilde | matilda | 0.15 |
-| mayra | myra | 0.15 |
-| bethlehem | belén | 0.15 |
-| alba | dawn | 0.15 |
-| dawn | aurora | 0.15 |
-| gloria | geoffrey | 0.15 |
-| dorothy | donato | 0.15 |
-| majo | maría josé | 0.15 |
-| majo | mary joseph | 0.15 |
-| anabel | ana belen | 0.15 |
-| anabel | ana bethlehem | 0.15 |
-| anaisa | ana isabel | 0.15 |
-| anaisa | ana isabelle | 0.15 |
-| maribel | maría isabel | 0.15 |
-| maribel | mary isabelle | 0.15 |
-| mabel | maría isabel | 0.15 |
-| mabel | mary isabelle | 0.15 |
-| mafer | maría fernanda | 0.15 |
-| mafer | mary fernanda | 0.15 |
-| mayte | maría teresa | 0.15 |
-| mayte | mary teresa | 0.15 |
-| malena | maría elena | 0.15 |
-| malena | mary elena | 0.15 |
-| marianela | maría estela | 0.15 |
-| marciela | maría celia | 0.15 |
-| maricarmen | maría del carmen | 0.15 |
+| Beto | Alberto | 0.15 |
+| Beto | Roberto | 0.15 |
+| Beto | Albert | 0.25 |
+| Beto | Robert | 0.25 |
+| Alberto | Albert | 0.15 |
+| Roberto | Robert | 0.15 |
+| Pancho | Francisco | 0.15 |
+| Pancho | Francis | 0.25 |
+| Paco | Francisco | 0.15 |
+| Paco | Francis | 0.25 |
+| Francisco | Francis | 0.15 |
+| Chofo | Rodolfo | 0.15 |
+| Chofo | Rudolph | 0.25 |
+| Rodolfo | Rudolph | 0.15 |
+| Chepe | José | 0.15 |
+| Chepe | Joseph | 0.25 |
+| Pepe | José | 0.15 |
+| Pepe | Joseph | 0.25 |
+| José | Joseph | 0.15 |
+| Meme | Manuel | 0.15 |
+| Manuel | Manola | 0.15 |
+| Manuel | Manolo | 0.15 |
+| Alejo | Alejandro | 0.15 |
+| Alejo | Alexander | 0.25 |
+| Fonsi | Alfonso | 0.15 |
+| Fonsi | Alphonse | 0.25 |
+| Poncho | Alfonso | 0.15 |
+| Poncho | Alphonse | 0.25 |
+| Jano | Alejandro | 0.15 |
+| Jano | Alexander | 0.25 |
+| Alejandro | Alexander | 0.15 |
+| Chejo | Sergio | 0.15 |
+| Chus | Jesús | 0.15 |
+| Chuy | Jesús | 0.15 |
+| Adi | Adolfo | 0.15 |
+| Adi | Adolph | 0.25 |
+| Adolfo | Adolph | 0.15 |
+| Güicho | Luis | 0.15 |
+| Güicho | Louis | 0.25 |
+| Lucho | Luis | 0.15 |
+| Lucho | Louis | 0.25 |
+| Luis | Louis | 0.15 |
+| Luis | Louise | 0.15 |
+| Chente | Vicente | 0.15 |
+| Chente | Vincent | 0.25 |
+| Vicente | Vincent | 0.15 |
+| Kiko | Federico | 0.15 |
+| Kiko | Frederick | 0.25 |
+| Federico | Frederick | 0.15 |
+| Lalo | Eduardo | 0.15 |
+| Lalo | Edward | 0.25 |
+| Eduardo | Edward | 0.15 |
+| Lencho | Lorenzo | 0.15 |
+| Lencho | Lawrence | 0.25 |
+| Lorenzo | Lawrence | 0.15 |
+| Memo | Guillermo | 0.15 |
+| Memo | William | 0.25 |
+| Guillermo | William | 0.15 |
+| Mingo | Domingo | 0.15 |
+| Mingo | Dominic | 0.25 |
+| Domingo | Dominic | 0.15 |
+| Neto | Ernesto | 0.15 |
+| Neto | Earnest | 0.25 |
+| Ernesto | Earnest | 0.15 |
+| Nando | Fernando | 0.15 |
+| Nando | Ferdinand | 0.25 |
+| Fernando | Ferdinand | 0.15 |
+| Monchi | Ramón | 0.15 |
+| Monchi | Raymond | 0.25 |
+| Ramón | Raymond | 0.15 |
+| Rulo | Raúl | 0.15 |
+| Nacho | Ignacio | 0.15 |
+| Nacho | Ignatius | 0.25 |
+| Nancho | Ignacio | 0.15 |
+| Nancho | Ignatius | 0.25 |
+| Ignacio | Ignatius | 0.15 |
+| Toño | Antonio | 0.15 |
+| Toño | Anthony | 0.25 |
+| Antonio | Anthony | 0.15 |
+| Quique | Enrique | 0.15 |
+| Quique | Henry | 0.25 |
+| Enrique | Henry | 0.15 |
+| Goyo | Gregorio | 0.15 |
+| Goyo | Gregory | 0.25 |
+| Gregorio | Gregory | 0.15 |
+| Miguel | Michael | 0.15 |
+| Juan | John | 0.15 |
+| Pablo | Paul | 0.15 |
+| Adán | Adam | 0.15 |
+| Agustín | Augustine | 0.15 |
+| Alfonso | Alfonse | 0.15 |
+| Alfonso | Alonso | 0.15 |
+| Alfonse | Alonso | 0.15 |
+| Alfredo | Alfred | 0.15 |
+| Ambrosio | Ambrose | 0.15 |
+| Andrés | Andrew | 0.15 |
+| Armando | Herman | 0.15 |
+| Arturo | Arthur | 0.15 |
+| Bartolomé | Bartholomew | 0.15 |
+| Bautista | Baptiste | 0.15 |
+| Benito | Benedict | 0.15 |
+| Bernardino | Bernardo | 0.15 |
+| Bruno | Brown | 0.15 |
+| Buenaventura | Bonaventura | 0.15 |
+| Carlos | Charles | 0.15 |
+| Cornelio | Cornelius | 0.15 |
+| Cristián | Christian | 0.15 |
+| Cristóbal | Christopher | 0.15 |
+| Darío | Darius | 0.15 |
+| Desi | Desiderio | 0.15 |
+| Diego | Santiago | 0.15 |
+| Edgardo | Edgar | 0.15 |
+| Edmundo | Edmund | 0.15 |
+| Emilio | Emile | 0.15 |
+| Esteban | Stephen | 0.15 |
+| Eusebio | Eusebius | 0.15 |
+| Fabio | Fabius | 0.15 |
+| Fabricio | Fabrice | 0.15 |
+| Felipe | Philip | 0.15 |
+| Félix | Felix | 0.15 |
+| Fermin | Firmin | 0.15 |
+| Geraldo | Gerald | 0.15 |
+| Gerardo | Gerard | 0.15 |
+| Gustavo | Gustav | 0.15 |
+| Herberto | Herbert | 0.15 |
+| Hernán | Hernando | 0.15 |
+| Hugo | Hugh | 0.15 |
+| Jacobo | Jacob | 0.15 |
+| Jaime | James | 0.15 |
+| Javier | Xavier | 0.15 |
+| Jerónimo | Jerome | 0.15 |
+| Joaquín | Joachim | 0.15 |
+| Joaquín | Joachin | 0.15 |
+| Jorge | George | 0.15 |
+| Josue | Joshua | 0.15 |
+| Julio | Julius | 0.15 |
+| Leonardo | Leonard | 0.15 |
+| Leopoldo | Leopold | 0.15 |
+| Luciano | Lucian | 0.15 |
+| Marcelo | Marcellus | 0.15 |
+| Marcio | Marcus | 0.15 |
+| Marco | Mark | 0.15 |
+| Mateo | Matthew | 0.15 |
+| Matías | Matthias | 0.15 |
+| Maximiliano | Maximilian | 0.15 |
+| Máximo | Maximus | 0.15 |
+| Agusto | Agustus | 0.15 |
+| Heracio | Hoartio | 0.15 |
+| Heracio | Horatius | 0.15 |
+| Cruz | Cross | 0.15 |
+| Cruz | Cruzita | 0.15 |
+| Chema | José María | 0.15 |
+| Chema | Joseph Mary | 0.15 |
+| Juampa | Juan Pablo | 0.15 |
+| Juampa | John Paul | 0.15 |
+| Juandi | Juan Diego | 0.15 |
+| Juandi | John Diego | 0.15 |
+| Juanjo | Juan José | 0.15 |
+| Juanjo | John Joseph | 0.15 |
+| Juanfran | Juan Francisco | 0.15 |
+| Juanfran | John Francis | 0.15 |
+| Juancho | Juan Francisco | 0.15 |
+| Juancho | John Francis | 0.15 |
+| Juanfer | Juan Fernando | 0.15 |
+| Juanfer | John Ferdinand | 0.15 |
+| Luismi | Luis Miguel | 0.15 |
+| Luismi | Louis Michael | 0.15 |
+| Licha | Alicia | 0.15 |
+| Licha | Alice | 0.25 |
+| Alicia | Alice | 0.15 |
+| Calu | Claudia | 0.15 |
+| Chayo | Rosario | 0.15 |
+| Chayo | Rosary | 0.25 |
+| Rosario | Rosary | 0.15 |
+| Concha | Concepción | 0.15 |
+| Concha | Conception | 0.25 |
+| Concha | Conchita | 0.15 |
+| Conchita | Chita | 0.15 |
+| Concepción | Conception | 0.15 |
+| Lena | Magdalena | 0.15 |
+| Lena | Magdalene | 0.25 |
+| Magdalena | Magdalene | 0.15 |
+| Leti | Leticia | 0.15 |
+| Leti | Letitia | 0.25 |
+| Leticia | Letitia | 0.15 |
+| Luchi | Lucía | 0.15 |
+| Luchi | Lucy | 0.25 |
+| Lucía | Lucy | 0.15 |
+| Mar | Mariana | 0.15 |
+| Mar | Marianna | 0.15 |
+| Mar | Maryanne | 0.25 |
+| Mariana | Marianna | 0.15 |
+| Mariana | Maryanne | 0.15 |
+| Tita | Marta | 0.15 |
+| Tita | Martha | 0.25 |
+| Marta | Martha | 0.15 |
+| Meches | Mercedes | 0.15 |
+| Pili | Pilar | 0.15 |
+| Paquita | Francisca | 0.15 |
+| Paquita | Frances | 0.25 |
+| Francisca | Frances | 0.15 |
+| Pepita | Josefa | 0.15 |
+| Pepita | Josephine | 0.25 |
+| Josefa | Josephine | 0.15 |
+| Tina | Cristina | 0.15 |
+| Tina | Christine | 0.25 |
+| Tina | Christina | 0.25 |
+| Cristina | Christine | 0.15 |
+| Cristina | Christina | 0.15 |
+| Vicky | Victoria | 0.15 |
+| Vivi | Viviana | 0.15 |
+| Vivi | Vivianne | 0.25 |
+| Viviana | Vivianne | 0.15 |
+| Geli | Angélica | 0.15 |
+| Gela | Angélica | 0.15 |
+| Lola | Dolores | 0.15 |
+| Fani | Estefanía | 0.15 |
+| Fani | Stephanie | 0.25 |
+| Estefanía | Stephanie | 0.15 |
+| Lupe | Guadalupe | 0.15 |
+| Chavela | Isabela | 0.15 |
+| Chavela | Isabelle | 0.25 |
+| Isabela | Isabelle | 0.15 |
+| Isabela | Isabel | 0.15 |
+| Isabelle | Isabel | 0.15 |
+| Chío | Rocío | 0.15 |
+| Sandy | Sandra | 0.15 |
+| Clementina | Cleme | 0.15 |
+| María | Mary | 0.15 |
+| Adelita | Adele | 0.15 |
+| Alejandra | Alexandra | 0.15 |
+| Ana | Anna | 0.15 |
+| Anabella | Annabel | 0.15 |
+| Antonietta | Antonia | 0.15 |
+| Anunciación | Annunziata | 0.15 |
+| Ascención | Ascension | 0.15 |
+| Asunción | Asumption | 0.15 |
+| Beatriz | Beatrix | 0.15 |
+| Blanca | Blanche | 0.15 |
+| Camila | Camilla | 0.15 |
+| Caridad | Charity | 0.15 |
+| Carla | Carlota | 0.15 |
+| Carmela | Carmel | 0.15 |
+| Carmelita | Carmel | 0.15 |
+| Carmen | Carmel | 0.15 |
+| Carmina | Carmel | 0.15 |
+| Catalina | Katherine | 0.15 |
+| Catherina | Catherine | 0.15 |
+| Clarisa | Clarissa | 0.15 |
+| Constanza | Constance | 0.15 |
+| Consuelo | Consolation | 0.15 |
+| Débora | Deborah | 0.15 |
+| Delfina | Delphina | 0.15 |
+| Dominga | Dominique | 0.15 |
+| Elena | Helen | 0.15 |
+| Elena | Ileana | 0.15 |
+| Eloisa | Eloise | 0.15 |
+| Ema | Emma | 0.15 |
+| Emilia | Emily | 0.15 |
+| Emilia | Amelia | 0.15 |
+| Emperatriz | Empress | 0.15 |
+| Ernesta | Ernest | 0.15 |
+| Esmeralda | Emerald | 0.15 |
+| Esperanza | Hope | 0.15 |
+| Estela | Estelle | 0.15 |
+| Estela | Star | 0.15 |
+| Eugenia | Eugenie | 0.15 |
+| Evangelina | Evangeline | 0.15 |
+| Evita | Eva | 0.15 |
+| Faustina | Faustus | 0.15 |
+| Feliciana | Feliciano | 0.15 |
+| Filomena | Philomena | 0.15 |
+| Florentina | Florence | 0.15 |
+| Florinda | Flora | 0.15 |
+| Gabriela | Gabrielle | 0.15 |
+| Gabriela | Gabriella | 0.15 |
+| Genoveva | Genevieve | 0.15 |
+| Gracia | Grace | 0.15 |
+| Hortensia | Hortense | 0.15 |
+| Inés | Agnes | 0.15 |
+| Inmaculada | Immaculate | 0.15 |
+| Isidora | Isidore | 0.15 |
+| Ivette | Yvette | 0.15 |
+| Jacinta | Hyacinth | 0.15 |
+| Leonor | Eleanor | 0.15 |
+| Lidia | Lydia | 0.15 |
+| Liliana | Lillian | 0.15 |
+| Lorena | Lorraine | 0.15 |
+| Lorenza | Lauren | 0.15 |
+| Lucila | Lucille | 0.15 |
+| Margarita | Margaret | 0.15 |
+| Marita | María | 0.15 |
+| Matilde | Matilda | 0.15 |
+| Mayra | Myra | 0.15 |
+| Bethlehem | Belén | 0.15 |
+| Alba | Dawn | 0.15 |
+| Dawn | Aurora | 0.15 |
+| Gloria | Geoffrey | 0.15 |
+| Dorothy | Donato | 0.15 |
+| Majo | María José | 0.15 |
+| Majo | Mary Joseph | 0.15 |
+| Anabel | Ana Belen | 0.15 |
+| Anabel | Ana Bethlehem | 0.15 |
+| Anaisa | Ana Isabel | 0.15 |
+| Anaisa | Ana Isabelle | 0.15 |
+| Maribel | María Isabel | 0.15 |
+| Maribel | Mary Isabelle | 0.15 |
+| Mabel | María Isabel | 0.15 |
+| Mabel | Mary Isabelle | 0.15 |
+| Mafer | María Fernanda | 0.15 |
+| Mafer | Mary Fernanda | 0.15 |
+| Mayte | María Teresa | 0.15 |
+| Mayte | Mary Teresa | 0.15 |
+| Malena | María Elena | 0.15 |
+| Malena | Mary Elena | 0.15 |
+| Marianela | María Estela | 0.15 |
+| Marciela | María Celia | 0.15 |
+| Maricarmen | María del Carmen | 0.15 |
 
 ### Insertion Costs
 
-| Unit | Cost |
+| Token(s) | Cost |
 | --- | --- |
 | de | 0.20 |
 | del | 0.20 |
 | la | 0.10 |
 | los | 0.10 |
 | las | 0.10 |
-| juan | 0.15 |
-| josé | 0.15 |
-| maría | 0.15 |
+| Juan | 0.15 |
+| José | 0.15 |
+| María | 0.15 |
 
 ### Deletion Costs
 
-| Unit | Cost |
+| Token(s) | Cost |
 | --- | --- |
 | de | 0.20 |
 | del | 0.20 |
