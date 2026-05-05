@@ -134,7 +134,7 @@ RapidFuzz scores computed using `rapidfuzz.fuzz.ratio`.
 
 This algorithm was developed as part of a Data Science capstone project at California Polytechnic State University, San Luis Obispo, in contribution to the [African Californios](https://www.africancalifornios.org/) research project.
 
-The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones, Lecturer in History, and Dr. Foaad Khosmood, Professor of Computer Science. Additional collaboration was provided by Jack T. Martin, a Visiting Scholar in History. It was advised by Dr. Alex Dekhtyar, Professor of Computer Science, and Dr. Kelly N. Bodwin, Associate Professor of Statistics.
+The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones, Lecturer in History, and Dr. Foaad Khosmood, Professor of Computer Science. Additional collaboration was provided by research intern Jack T. Martin, a Visiting Scholar in History. It was advised by Dr. Alex Dekhtyar, Professor of Computer Science, and Dr. Kelly N. Bodwin, Associate Professor of Statistics.
 
 
 ## License
