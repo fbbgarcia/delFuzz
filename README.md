@@ -5,7 +5,7 @@
 
 ## Overview
 
-delFuzz is a tool for fuzzy matching Spanish names. It uses modified character and token-level Levenshtein Distance algorithms to compute a normalized similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of Spanish prepositions and articles. 
+delFuzz is a tool for fuzzy matching Spanish names. It uses modified character and token-level [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) algorithms to compute a normalized similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of Spanish prepositions and articles. 
 
 ## Requirements
 
