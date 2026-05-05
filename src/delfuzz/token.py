@@ -2,7 +2,7 @@ import math
 import warnings
 from .defaults import CHAR_COSTS, TOKEN_COSTS, MULTIGRAPH_PLACEHOLDERS
 from .char import _char_ratio
-from .cost_dict import _to_dict
+from .cost_dict import CostDictionary, _to_dict
 
 def _get_avg_sim(
     token1: tuple,
@@ -184,8 +184,8 @@ def _get_token_del_cost(
 def _token_distance(
     name1: str,
     name2: str,
-    char_cost_dict: dict = CHAR_COSTS,
-    token_cost_dict: dict = TOKEN_COSTS,
+    char_cost_dict: "dict | CostDictionary" = CHAR_COSTS,
+    token_cost_dict: "dict | CostDictionary" = TOKEN_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     sim_threshold: float = 70.0,
     max_char_span_len: int = 2,
@@ -201,8 +201,8 @@ def _token_distance(
     Args:
         name1 (str): First name.
         name2 (str): Second name.
-        char_cost_dict (dict): Dictionary of custom character-level costs.
-        token_cost_dict (dict): Dictionary of custom token-level costs.
+        char_cost_dict (dict | CostDictionary): Dictionary of custom character-level costs.
+        token_cost_dict (dict | CostDictionary): Dictionary of custom token-level costs.
         placeholders (list[tuple[str, str]]): Multigraph-to-placeholder mappings.
         sim_threshold (float): Minimum similarity (0-100) to soft match a token unit to a key.
         max_char_span_len (int): Maximum length of character spans to consider.
@@ -320,8 +320,8 @@ def _token_distance(
 def score(
     name1: str,
     name2: str,
-    char_cost_dict: dict = CHAR_COSTS,
-    token_cost_dict: dict = TOKEN_COSTS,
+    char_cost_dict: "dict | CostDictionary" = CHAR_COSTS,
+    token_cost_dict: "dict | CostDictionary" = TOKEN_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     sim_threshold: float = 70.0,
     max_char_span_len: int = 2,
@@ -334,8 +334,8 @@ def score(
     Args:
         name1 (str): First name.
         name2 (str): Second name.
-        char_cost_dict (dict): Dictionary of custom character-level costs.
-        token_cost_dict (dict): Dictionary of custom token-level costs.
+        char_cost_dict (dict | CostDictionary): Dictionary of custom character-level costs.
+        token_cost_dict (dict | CostDictionary): Dictionary of custom token-level costs.
         placeholders (list[tuple[str, str]]): Multigraph-to-placeholder mappings.
         sim_threshold (float): Minimum similarity (0-100) to soft match a token unit to a key.
             Inputs below this threshold fall back to the default cost.

@@ -5,7 +5,7 @@ import pandas as pd
 from .defaults import CHAR_COSTS, TOKEN_COSTS
 
 
-def _to_dict(cost_dict: "CostDictionary"):
+def _to_dict(cost_dict: "CostDictionary | dict"):
     """
     Returns the raw dict representation of a cost dictionary.
     """

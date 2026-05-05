@@ -1,6 +1,6 @@
 import math
 from .defaults import CHAR_COSTS, MULTIGRAPH_PLACEHOLDERS
-from .cost_dict import _to_dict
+from .cost_dict import CostDictionary, _to_dict
 
 
 def _get_char_sub_cost(
@@ -50,7 +50,7 @@ def _get_char_del_cost(
 def _char_distance(
     token1: str,
     token2: str,
-    cost_dict: dict = CHAR_COSTS,
+    cost_dict: "dict | CostDictionary" = CHAR_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     max_span_len: int = 2,
 ):
@@ -64,7 +64,7 @@ def _char_distance(
     Args:
         token1 (str): First token.
         token2 (str): Second token.
-        cost_dict (dict): Dictionary of custom costs.
+        cost_dict (dict | CostDictionary): Dictionary of custom costs.
         placeholders (list[tuple[str, str]]): Multigraph-to-placeholder mappings.
         max_span_len (int): Maximum length of character spans to consider.
 
@@ -155,7 +155,7 @@ def _char_distance(
 def _char_ratio(
     token1: str,
     token2: str,
-    cost_dict: dict = CHAR_COSTS,
+    cost_dict: "dict | CostDictionary" = CHAR_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     max_span_len: int = 2,
 ):
@@ -166,7 +166,7 @@ def _char_ratio(
     Args:
         token1 (str): First token.
         token2 (str): Second token.
-        cost_dict (dict): Dictionary of custom costs.
+        cost_dict (dict | CostDictionary): Dictionary of custom costs.
         placeholders (list[tuple[str, str]]): Multigraph-to-placeholder mappings.
         max_span_len (int): Maximum length ofcharacter spans to consider.
 
