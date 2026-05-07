@@ -184,8 +184,8 @@ def _get_token_del_cost(
 def _token_distance(
     name1: str,
     name2: str,
-    char_cost_dict: "dict | CostDictionary" = CHAR_COSTS,
-    token_cost_dict: "dict | CostDictionary" = TOKEN_COSTS,
+    char_cost_dict: dict | CostDictionary = CHAR_COSTS,
+    token_cost_dict: dict | CostDictionary = TOKEN_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     sim_threshold: float = 70.0,
     max_char_span_len: int = 2,
@@ -320,8 +320,8 @@ def _token_distance(
 def score(
     name1: str,
     name2: str,
-    char_cost_dict: "dict | CostDictionary" = CHAR_COSTS,
-    token_cost_dict: "dict | CostDictionary" = TOKEN_COSTS,
+    char_cost_dict: dict | CostDictionary = CHAR_COSTS,
+    token_cost_dict: dict | CostDictionary = TOKEN_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     sim_threshold: float = 70.0,
     max_char_span_len: int = 2,

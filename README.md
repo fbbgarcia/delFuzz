@@ -5,7 +5,7 @@
 
 ## Overview
 
-delFuzz is a tool for fuzzy matching Spanish names. It uses modified character and token-level [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) algorithms to compute a normalized similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of Spanish prepositions and articles. 
+delFuzz is a tool for fuzzy matching Spanish names. It uses modified character and token-level [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) algorithms to compute a normalized similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as commonly interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of Spanish prepositions and articles. 
 
 ## Requirements
 
@@ -46,16 +46,16 @@ import delfuzz
 | --- | --- | --- | --- |
 | name1 | str |  | First name to be compared. |
 | name2 | str |  | Second name to be compared. |
-| char_cost_dict | dict | [CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | Dictionary of custom character-level costs. |
-| token_cost_dict | dict | [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | Dictionary of custom token-level costs. |
+| char_cost_dict | dict \| CostDictionary | [CHAR_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | Dictionary of custom character-level costs. |
+| token_cost_dict | dict \| CostDictionary | [TOKEN_COSTS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | Dictionary of custom token-level costs. |
 | placeholders | list[tuple[str, str]] | [MULTIGRAPH_PLACEHOLDERS](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py) | List of multigraph-to-placeholder mappings used to treat common Spanish multigraphs as their own singular characters. |
-| sim_threshold | float | 70.0 | Minimum similarity (0-100) required to soft match a token/token span to a key in token_cost_dict. Allows the algorithm to tolerate minor spelling variations and errors. |
-| max_char_span_len | int | 2 | Maximum length of character spans to consider. Allows the algorithm to support edit operations on spans of characters (e.g. multigraphs). |
-| max_token_span_len | int | 3 | Maximum length of token spans to consider. Allows the algorithm to support edit operations on spans of tokens. |
+| sim_threshold | float | 70.0 | Minimum similarity (0-100) required to soft match tokens. Allows the algorithm to tolerate minor spelling variations and errors. |
+| max_char_span_len | int | 2 | Maximum length of character spans to consider. Allows the algorithm to support edit operations on spans of multiple characters (e.g. multigraphs). |
+| max_token_span_len | int | 3 | Maximum length of token spans to consider. Allows the algorithm to support edit operations on spans of multiple tokens. |
 
 ### Custom Cost Dictionaries
 
-`score` accepts custom cost dictionaries, allowing you to modify or replace the defaults. A full list of default costs can be found in [costs.md](https://github.com/fbbgarcia/delfuzz/blob/main/costs.md).
+`score` accepts custom cost dictionaries, allowing you to modify or replace the [defaults](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py). A full list of default costs can be found in [costs.md](https://github.com/fbbgarcia/delfuzz/blob/main/costs.md).
 
 The easiest way to manage cost dictionaries is with the built-in `CharCostDictionary` class for character-level costs and the built-in `TokenCostDictionary` class for token-level costs:
 
@@ -106,36 +106,36 @@ delfuzz.score("Felipe de la Cruz", "Philip de la Cruz", token_cost_dict=token_co
 
 #### Notes
 
-1. All inputs are automatically lowercased.
+1. All inputs are automatically lowercased. 
 
-2. Multi-character and multi-token spans are supported. For example, `"ph"` in a `CharCostDictionary` or `"Juan Pablo"` in a `TokenCostDictionary`.
+2. Substitution costs are bidirectional by default. Pass `bidirectional=False` to add a one-way mapping.
 
-3. Substitution costs are bidirectional by default. Pass `bidirectional=False` to add a one-way mapping.
+3. If you want to add a custom cost for a character span that has a placeholder in the `placeholders` argument, make sure to use the placeholder instead of the span (e.g. `char_costs.add_sub_cost(("λ", "y", 0.5)` instead of `char_costs.add_sub_cost(("ll", "y", 0.5)`).
 
 4. If you add costs for edit operations on spans longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest span in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer spans will not be found during lookup otherwise.
 
 ## Comparison
 
-General-purpose fuzzy or string matching libraries like RapidFuzz treat names as plain strings. Without context of Spanish spelling or name usage conventions, they tend to underestimate the similarity between Spanish names.
+General-purpose fuzzy matching libraries like RapidFuzz treat names as plain strings. Without context of Spanish spelling or name usage conventions, they tend to underestimate the similarity between Spanish names. 
 
-For example, here's how delFuzz's scores compare to RapidFuzz's ratio scores:
+For example, here's how delFuzz and RapidFuzz scores compare to expert opinion:
 
-| Name 1 | Name 2 | delFuzz | RapidFuzz Ratio |
-| --- | --- | --- | --- |
-| María del Carmen | Maria del Carmen | 99.33 | 93.75 |
-| María del Carmen | Maria Carmen | 92.67 | 78.57 |
-| María del Carmen | Maricarmen | 85.00 | 61.54 |
-| María del Carmen | Mary del Carmen | 95.00 | 90.32 |
+| Name 1 | Name 2 | Expert Score | delFuzz Score | RapidFuzz Ratio |
+| --- | --- | --- | --- | --- |
+| María del Carmen | Maria del Carmen | 100 | 99.33 | 93.75 |
+| María del Carmen | Maria Carmen | 95 | 92.67 | 78.57 |
+| María del Carmen | Maricarmen | 85 | 85.00 | 61.54 |
 
-RapidFuzz scores computed using `rapidfuzz.fuzz.ratio`.
+Expert scores were provided by History Lecturer Cameron D. Jones, who is well-versed in the art of paleography. RapidFuzz scores were computed using `rapidfuzz.fuzz.ratio`.
 
 
 ## Acknowledgements
 
 This algorithm was developed as part of a Data Science capstone project at California Polytechnic State University, San Luis Obispo, in contribution to the [African Californios](https://www.africancalifornios.org/) research project.
 
-The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones, Lecturer in History, and Dr. Foaad Khosmood, Professor of Computer Science. Additional collaboration was provided by research intern Jack T. Martin, a Visiting Scholar in History. It was advised by Dr. Alex Dekhtyar, Professor of Computer Science, and Dr. Kelly N. Bodwin, Associate Professor of Statistics.
+The capstone team consisted of Libbry Brill, Franchesca Garcia, Rachel Hartfelder, and Kaatje Matthews-vanKoetsveld. 
 
+The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones (Lecturer in History) and Dr. Foaad Khosmood (Professor of Computer Science), and research intern Jack T. Martin (Visiting Scholar in History). It was advised by Dr. Alex Dekhtyar (Professor of Computer Science) and Dr. Kelly N. Bodwin (Associate Professor of Statistics).
 
 ## License
 

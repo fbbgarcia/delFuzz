@@ -50,7 +50,7 @@ def _get_char_del_cost(
 def _char_distance(
     token1: str,
     token2: str,
-    cost_dict: "dict | CostDictionary" = CHAR_COSTS,
+    cost_dict: dict | CostDictionary = CHAR_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     max_span_len: int = 2,
 ):
@@ -155,7 +155,7 @@ def _char_distance(
 def _char_ratio(
     token1: str,
     token2: str,
-    cost_dict: "dict | CostDictionary" = CHAR_COSTS,
+    cost_dict: dict | CostDictionary = CHAR_COSTS,
     placeholders: list[tuple[str, str]] = MULTIGRAPH_PLACEHOLDERS,
     max_span_len: int = 2,
 ):
