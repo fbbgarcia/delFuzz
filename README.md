@@ -34,10 +34,6 @@ import delfuzz
 # example with nickname
 >>> delfuzz.score("María del Carmen", "Maricarmen")
 85.0
-
-# example with English variant
->>> delfuzz.score("María del Carmen", "Mary del Carmen")
-95.0
 ```
 
 ### Parameters
@@ -126,14 +122,13 @@ For example, here's how delFuzz and RapidFuzz scores compare to expert opinion:
 | María del Carmen | Maria Carmen | 95 | 92.67 | 78.57 |
 | María del Carmen | Maricarmen | 85 | 85.00 | 61.54 |
 
-Expert scores were provided by History Lecturer Cameron D. Jones, who is well-versed in the art of paleography. RapidFuzz scores were computed using `rapidfuzz.fuzz.ratio`.
-
+Expert scores were provided by History Lecturer Cameron D. Jones (California Polytechnic State University, San Luis Obispo), who is well-versed in the art of paleography. RapidFuzz scores were computed using `rapidfuzz.fuzz.ratio`.
 
 ## Acknowledgements
 
 This algorithm was developed as part of a Data Science capstone project at California Polytechnic State University, San Luis Obispo, in contribution to the [African Californios](https://www.africancalifornios.org/) research project.
 
-The capstone team consisted of Libbry Brill, Franchesca Garcia, Rachel Hartfelder, and Kaatje Matthews-vanKoetsveld. 
+The capstone team consisted of Libby Brill, Franchesca Garcia, Rachel Hartfelder, and Kaatje Matthews-vanKoetsveld. 
 
 The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones (Lecturer in History) and Dr. Foaad Khosmood (Professor of Computer Science), and research intern Jack T. Martin (Visiting Scholar in History). It was advised by Dr. Alex Dekhtyar (Professor of Computer Science) and Dr. Kelly N. Bodwin (Associate Professor of Statistics).
 
