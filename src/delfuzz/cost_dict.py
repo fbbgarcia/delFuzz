@@ -79,8 +79,14 @@ class CostDictionary:
             return
         self._set_sub_cost(u1, u2, cost)
         if bidirectional:
-            if not self._sub_cost_exists(u2, u1):
-                self._set_sub_cost(u2, u1, cost)
+            if self._sub_cost_exists(u2, u1):
+                warnings.warn(
+                    f"Substitution cost for {unit2!r} -> {unit1!r} already exists. "
+                    f"Use edit_sub_cost to update it.",
+                    UserWarning,
+                )
+                return
+            self._set_sub_cost(u2, u1, cost)
 
     def remove_sub_cost(
         self,
@@ -99,9 +105,22 @@ class CostDictionary:
         """
         u1 = _to_tuple(unit1, self._level)
         u2 = _to_tuple(unit2, self._level)
+        if not self._sub_cost_exists(u1, u2):
+            warnings.warn(
+                f"No substitution cost found for {unit1!r} -> {unit2!r}.",
+                UserWarning,
+            )
+            return
         self._del_sub_cost(u1, u2)
         if bidirectional:
+            if not self._sub_cost_exists(u2, u1):
+                warnings.warn(
+                    f"No substitution cost found for {unit2!r} -> {unit1!r}.",
+                    UserWarning,
+                )
+                return
             self._del_sub_cost(u2, u1)
+
 
     def edit_sub_cost(
         self,
@@ -112,7 +131,6 @@ class CostDictionary:
     ):
         """
         Updates the substitution cost between two units if it exists.
-        Raises a KeyError if the pair does not exist.
 
         Args:
             unit1 (str): First unit.
@@ -124,11 +142,19 @@ class CostDictionary:
         u1 = _to_tuple(unit1, self._level)
         u2 = _to_tuple(unit2, self._level)
         if not self._sub_cost_exists(u1, u2):
-            raise KeyError(f"No substitution cost found for {unit1!r} -> {unit2!r}.")
+            warnings.warn(
+                f"No substitution cost found for {unit1!r} -> {unit2!r}.",
+                UserWarning,
+            )
+            return
         self._set_sub_cost(u1, u2, cost)
         if bidirectional:
             if not self._sub_cost_exists(u2, u1):
-                raise KeyError(f"No substitution cost found for {unit2!r} -> {unit1!r}.")
+                warnings.warn(
+                    f"No substitution cost found for {unit2!r} -> {unit1!r}.",
+                    UserWarning,
+                )
+                return
             self._set_sub_cost(u2, u1, cost)
 
 
@@ -160,12 +186,17 @@ class CostDictionary:
             unit (str): The unit.
         """
         u = _to_tuple(unit, self._level)
+        if u not in self._costs["ins"]:
+            warnings.warn(
+                f"No insertion cost found for {unit!r}.",
+                UserWarning,
+            )
+            return
         self._costs["ins"].pop(u, None)
 
     def edit_ins_cost(self, unit: str, cost: float):
         """
         Updates the insertion cost for a unit if it exists.
-        Raises a KeyError if the unit does not exist.
 
         Args:
             unit (str): The unit.
@@ -173,7 +204,11 @@ class CostDictionary:
         """
         u = _to_tuple(unit, self._level)
         if u not in self._costs["ins"]:
-            raise KeyError(f"No insertion cost found for {unit!r}.")
+            warnings.warn(
+                f"No insertion cost found for {unit!r}.",
+                UserWarning,
+            )
+            return
         self._costs["ins"][u] = cost
 
 
@@ -205,12 +240,17 @@ class CostDictionary:
             unit (str): The unit.
         """
         u = _to_tuple(unit, self._level)
+        if u not in self._costs["del"]:
+            warnings.warn(
+                f"No deletion cost found for {unit!r}.",
+                UserWarning,
+            )
+            return
         self._costs["del"].pop(u, None)
 
     def edit_del_cost(self, unit: str, cost: float):
         """
         Updates the deletion cost for a unit if it exists.
-        Raises a KeyError if the unit does not exist.
 
         Args:
             unit (str): The unit.
@@ -218,7 +258,11 @@ class CostDictionary:
         """
         u = _to_tuple(unit, self._level)
         if u not in self._costs["del"]:
-            raise KeyError(f"No deletion cost found for {unit!r}.")
+            warnings.warn(
+                f"No deletion cost found for {unit!r}.",
+                UserWarning,
+            )
+            return
         self._costs["del"][u] = cost
 
 
@@ -304,6 +348,7 @@ class CostDictionary:
         if entries is None:
             return False
         return any(target == unit2 for target, _ in entries)
+
 
 
 class CharCostDictionary(CostDictionary):

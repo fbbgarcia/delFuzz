@@ -41,7 +41,7 @@ _CHAR_COSTS_ONE_WAY = {
 # Second key is a tuple of tokens representing the unit being operated on.
 # Substitution values are lists of (second_unit, cost) pairs,
 #   where second_unit is a tuple of tokens representing the other unit involved in the substitution.
-#   Substitution costs are stored one-way for brevity, but the add_inverse_subs function adds the corresponding inverse mappings automatically.
+#   Substitution costs are stored one-way for brevity, but the _add_inverse_subs function adds the corresponding inverse mappings automatically.
 # Insertion and deletion values are single costs.
 _TOKEN_COSTS_ONE_WAY = {
     "sub": {
