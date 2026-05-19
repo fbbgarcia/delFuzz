@@ -122,7 +122,7 @@ For example, here's how delFuzz and RapidFuzz scores compare to expert opinion:
 | María del Carmen | Maria Carmen | 95 | 92.67 | 78.57 |
 | María del Carmen | Maricarmen | 85 | 85.00 | 61.54 |
 
-Expert scores were provided by History Lecturer Cameron D. Jones (California Polytechnic State University, San Luis Obispo), who is well-versed in the art of paleography. RapidFuzz scores were computed using `rapidfuzz.fuzz.ratio`.
+Expert scores were provided by History Lecturer Cameron D. Jones (California Polytechnic State University, San Luis Obispo). RapidFuzz scores were computed using `rapidfuzz.fuzz.ratio`.
 
 ## Acknowledgements
 
@@ -130,7 +130,7 @@ This algorithm was developed as part of a Data Science capstone project at Calif
 
 The capstone team consisted of Libby Brill, Franchesca Garcia, Rachel Hartfelder, and Kaatje Matthews-vanKoetsveld. 
 
-The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones (Lecturer in History) and Dr. Foaad Khosmood (Professor of Computer Science), and research intern Jack T. Martin (Visiting Scholar in History). It was advised by Dr. Alex Dekhtyar (Professor of Computer Science) and Dr. Kelly N. Bodwin (Associate Professor of Statistics).
+The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones (Lecturer in History) and Dr. Foaad Khosmood (Professor of Computer Science), and research intern Jack T. Martin (Visiting Scholar in History). It was advised by Dr. Kelly N. Bodwin (Associate Professor of Statistics) and Dr. Alex Dekhtyar (Professor of Computer Science).
 
 ## License
 
