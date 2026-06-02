@@ -1,5 +1,5 @@
 
-<img align="right" width="140" src="delFuzz_hello.PNG" alt="delFuzz logo">
+<img align="right" width="140" src="delfuzz_hello.PNG" alt="delFuzz logo">
 
 # delFuzz
 
@@ -8,15 +8,15 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
 
-# Overview
+## Overview
 
 delFuzz is a tool for fuzzy matching Spanish names. It uses modified character and token-level [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) algorithms to compute a normalized similarity score between two names (0-100). Custom character-level edit costs account for Spanish spelling conventions such as commonly interchangeable letters and the use of diacritics. Custom token-level costs account for name usage conventions such as nicknames and the inclusion of Spanish prepositions and articles. 
 
-# Requirements
+## Requirements
 
 - Python 3.9 or higher
 
-# Installation
+## Installation
 
 ```bash
 # with pip
@@ -26,9 +26,9 @@ pip install delfuzz
 pip install git+https://github.com/fbbgarcia/delFuzz.git
 ```
 
-# Usage
+## Usage
 
-## Examples
+### Examples
 
 ```python
 import delfuzz
@@ -46,7 +46,7 @@ import delfuzz
 85.0
 ```
 
-## Parameters
+### Parameters
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -59,7 +59,7 @@ import delfuzz
 | max_char_span_len | int | 2 | Maximum length of character spans to consider. Allows the algorithm to support edit operations on spans of multiple characters (e.g. multigraphs). |
 | max_token_span_len | int | 3 | Maximum length of token spans to consider. Allows the algorithm to support edit operations on spans of multiple tokens. |
 
-## Custom Cost Dictionaries
+### Custom Cost Dictionaries
 
 `score` accepts custom cost dictionaries, allowing you to modify or replace the [defaults](https://github.com/fbbgarcia/delfuzz/blob/main/src/delfuzz/defaults.py). A full list of default costs can be found in [costs.md](https://github.com/fbbgarcia/delfuzz/blob/main/costs.md).
 
@@ -110,7 +110,7 @@ Pass your custom dictionary to `score`:
 delfuzz.score("Felipe de la Cruz", "Philip de la Cruz", token_cost_dict=token_costs)
 ```
 
-### Notes
+#### Notes
 
 1. All inputs are automatically lowercased. 
 
@@ -120,7 +120,7 @@ delfuzz.score("Felipe de la Cruz", "Philip de la Cruz", token_cost_dict=token_co
 
 4. If you add costs for edit operations on spans longer than the default span length, make sure to pass the appropriate `max_char_span_len` or `max_token_span_len` argument to match the longest span in your cost dictionary. The defaults are 2 for character spans and 3 for token spans — any costs defined on longer spans will not be found during lookup otherwise.
 
-# Comparison
+## Comparison
 
 General-purpose fuzzy matching libraries like RapidFuzz treat names as plain strings. Without context of Spanish spelling or name usage conventions, they tend to underestimate the similarity between Spanish names. 
 
@@ -134,7 +134,7 @@ For example, here's how delFuzz and RapidFuzz scores compare to expert opinion:
 
 Expert scores were provided by History Lecturer Dr. Cameron D. Jones (California Polytechnic State University, San Luis Obispo). RapidFuzz scores were computed using `rapidfuzz.fuzz.ratio`.
 
-# Acknowledgements
+## Acknowledgements
 
 This algorithm was developed as part of a Data Science capstone project at California Polytechnic State University, San Luis Obispo, in contribution to [African Californios](https://www.africancalifornios.org/), a project at the Cal Poly Institute For Advanced Technology and Public Policy.
 
@@ -142,6 +142,6 @@ The capstone team consisted of Libby Brill, Franchesca Garcia, Rachel Hartfelder
 
 The capstone project was conducted in collaboration with African Californios project directors Dr. Cameron D. Jones (Lecturer in History) and Dr. Foaad Khosmood (Professor of Computer Science), and research intern Jack T. Martin (Visiting Scholar in History). It was advised by Dr. Kelly N. Bodwin (Associate Professor of Statistics) and Dr. Alex Dekhtyar (Professor of Computer Science).
 
-# License
+## License
 
 MIT License. See [LICENSE](LICENSE) for details.
