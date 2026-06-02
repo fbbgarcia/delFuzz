@@ -1,5 +1,5 @@
 
-<img align="right" width="140" src="delfuzz_hello.PNG" alt="delFuzz logo">
+<img align="right" width="140" src="delfuzz_hex.PNG" alt="delFuzz logo">
 
 # delFuzz
 
