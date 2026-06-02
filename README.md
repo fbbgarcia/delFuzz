@@ -1,6 +1,4 @@
 
-<img align="right" width="140" src="delfuzz_hex.PNG" alt="delFuzz logo">
-
 # delFuzz
 
 [![PyPI version](https://img.shields.io/pypi/v/delFuzz)](https://pypi.org/project/delFuzz/)
